@@ -50,7 +50,7 @@ npm run build
 
 노션의 신형 attachment 업로드(`attachment:<uuid>:<file>`) 는 비공식 API 로 풀어낼 수 없으므로 다음 두 방법 중 하나로 사용합니다.
 
-1. **레포에 이미지 커밋 (권장)**: 이미지를 [`public/post-images/`](./public/post-images/) 에 올린 뒤, 노션 `thumbnail` 컬럼에 GitHub Pages URL 임베드. 예: `https://imweb-tech.github.io/imweb_techblog/post-images/<파일명>`
+1. **레포에 이미지 커밋 (권장)**: 이미지를 [`public/post-images/`](./public/post-images/) 에 올린 뒤, 노션 `thumbnail` 컬럼에 GitHub Pages URL 임베드. 예: `https://imweb-tech.github.io/imweb_techblog_1/post-images/<파일명>`
 2. **외부 URL**: Unsplash 등 외부 호스팅의 URL 을 그대로 임베드
 
 ## 디자인 커스터마이징

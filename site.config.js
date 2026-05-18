@@ -7,7 +7,7 @@ const CONFIG = {
     author: "Imweb Tech",
     language: "ko-KR",
     timezone: "Asia/Seoul",
-    siteUrl: "https://imweb-tech.github.io/imweb_techblog",
+    siteUrl: "https://imweb-tech.github.io/imweb_techblog_1",
   },
 
   // ── 브랜드 컬러 ─────────────────────────────────────────────────────────
@@ -65,7 +65,7 @@ const CONFIG = {
   comments: {
     giscus: {
       enabled: true,
-      repo: "imweb-tech/imweb_techblog",
+      repo: "imweb-tech/imweb_techblog_1",
       repoId: "R_kgDOScKclg",
       category: "General",
       categoryId: "DIC_kwDOScKcls4C9BhC",

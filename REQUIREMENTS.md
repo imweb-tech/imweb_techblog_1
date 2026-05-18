@@ -3,7 +3,7 @@
 > 향후 의사결정의 근거 자료 또는 새 팀원 온보딩용으로 사용합니다.
 
 - **프로덕트명**: 아임웹 테크
-- **URL**: https://imweb-tech.github.io/imweb_techblog
+- **URL**: https://imweb-tech.github.io/imweb_techblog_1
 - **목적**: 아임웹 기술 조직의 이야기를 외부에 공유하는 공식 기술 블로그
 - **운영 주체**: 아임웹 (주식회사)
 - **콘텐츠 책임자**: 기술 조직
