@@ -64,18 +64,29 @@ export async function getPostSlugs(): Promise<string[]> {
   return posts.map((p) => p.slug)
 }
 
+// 카테고리는 노션 DB 스키마의 `category` 옵션 정의 순서를 그대로 사용합니다.
+// 글 개수가 0 인 카테고리도 노출하며, 순서는 노션에서 옵션을 정렬한 그대로.
 export async function getCategories(): Promise<
   { name: string; count: number }[]
 > {
+  const recordMap = await fetchDatabaseRecordMap()
+  const collectionEntry = Object.entries(recordMap.collection || {})[0]
+  if (!collectionEntry) return []
+  const collection = unwrap(collectionEntry[1])
+  const schema = collection?.schema
+  if (!schema) return []
+  const categoryPropId = findPropId(schema, ["category", "카테고리"])
+  if (!categoryPropId) return []
+  const options =
+    (schema[categoryPropId]?.options as { value: string }[] | undefined) ?? []
+
   const posts = await getPosts()
-  const map = new Map<string, number>()
+  const counts = new Map<string, number>()
   for (const p of posts) {
     if (!p.category) continue
-    map.set(p.category, (map.get(p.category) || 0) + 1)
+    counts.set(p.category, (counts.get(p.category) || 0) + 1)
   }
-  return Array.from(map.entries())
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count)
+  return options.map((o) => ({ name: o.value, count: counts.get(o.value) || 0 }))
 }
 
 export async function getTags(): Promise<{ name: string; count: number }[]> {
