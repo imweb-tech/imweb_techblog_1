@@ -85,6 +85,8 @@ imweb_techblog_1/
 │   ├── styles/globals.css           Tailwind base + .prose-body / .lift-card / .chip
 │   └── types/index.ts               TPost / TAuthor / TPostStatus
 │
+├── scripts/
+│   └── build-feed-and-sitemap.ts    postbuild — RSS/Atom/sitemap 생성
 ├── .github/workflows/deploy.yml     CI: build + Pages 배포
 ├── next.config.js                   output: "export", basePath, image config
 ├── tailwind.config.js               컬러/타이포/easing 토큰
@@ -107,6 +109,14 @@ imweb_techblog_1/
 | `/search/?q=...` | `pages/search.tsx` | 클라이언트 사이드 substring 검색 |
 | `/about/` | `pages/about.tsx` | 소개 |
 | `/404` | `pages/404.tsx` | Not Found |
+
+빌드 산출물 (`scripts/build-feed-and-sitemap.ts`):
+
+| 경로 | 설명 |
+|---|---|
+| `/feed.xml` | RSS 2.0 (최근 20개 글) |
+| `/atom.xml` | Atom 1.0 |
+| `/sitemap.xml` | 모든 페이지 + 글 목록 |
 
 외부 링크 (네비):
 - 채용 → https://career.imweb.me
@@ -208,7 +218,8 @@ flowchart TB
   A["GitHub Actions<br/>(deploy.yml)"]
   A --> I["npm ci"]
   I --> B["next build<br/>(출력: ./out)"]
-  B --> AR["upload-pages-artifact"]
+  B --> PB["postbuild<br/>(feed/sitemap 생성)"]
+  PB --> AR["upload-pages-artifact"]
   AR --> D["deploy-pages"]
   D --> GH["https://imweb-techblog.github.io/imweb_techblog_1/"]
 ```
@@ -271,4 +282,3 @@ flowchart TB
 | 2 | 검색이 본문은 포함하지 않음 | 제목/요약/카테고리/태그 substring 만 |
 | 3 | dev 의 `getStaticPaths` 캐시 | 노션에 새 글 추가 후 dev 서버 재시작 |
 | 4 | 글 50건 초과 시 일부 누락 가능성 | `getPosts` 페이지네이션 보강 (TODO) |
-| 5 | sitemap.xml / RSS 미제공 | (TODO) |
