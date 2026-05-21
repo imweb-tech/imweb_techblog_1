@@ -1,6 +1,6 @@
 # 아임웹 테크
 
-[morethan-log](https://github.com/morethanmin/morethan-log) 를 베이스로, Notion 을 CMS 로 사용하는 정적 사이트입니다. GitHub Pages 로 배포됩니다.
+Notion 을 CMS 로 사용하는 정적 사이트입니다. GitHub Pages 로 배포됩니다.
 
 > 📚 함께 보기: [STRUCTURE.md](./STRUCTURE.md) (프로젝트 구조) · [REQUIREMENTS.md](./REQUIREMENTS.md) (요구사항) · [DEPLOY.md](./DEPLOY.md) (운영·배포)
 
@@ -85,4 +85,8 @@ Tailwind 토큰은 [`tailwind.config.js`](./tailwind.config.js) 에, 본문(`pro
 
 ## 라이선스
 
-원본 [morethan-log](https://github.com/morethanmin/morethan-log) 와 동일한 MIT 라이선스를 따릅니다.
+MIT.
+
+## 참고
+
+데이터베이스 스키마는 [morethan-log](https://github.com/morethanmin/morethan-log) 를 참고했습니다.

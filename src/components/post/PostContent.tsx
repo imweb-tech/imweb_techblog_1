@@ -18,7 +18,7 @@ const Modal = dynamic(
   { ssr: false }
 )
 
-// Notion 페이지의 recordMap 을 그대로 렌더링합니다. (morethan-log 방식)
+// Notion 페이지의 recordMap 을 그대로 렌더링합니다.
 export default function PostContent({
   recordMap,
 }: {

@@ -2,7 +2,7 @@
 
 이 프로젝트는 `imweb-techblog/imweb_techblog_1` 저장소를 기반으로 운영됩니다.
 
-빌드 시 노션 데이터는 **비공식 Notion API(`notion-client`)** 로 가져옵니다. morethan-log 와 동일한 방식이고, **Integration 토큰이 필요하지 않습니다.** 대신 노션 DB 페이지가 "웹에 게시(Share to web)" 되어 있어야 합니다.
+빌드 시 노션 데이터는 **비공식 Notion API(`notion-client`)** 로 가져옵니다. **Integration 토큰이 필요하지 않습니다.** 대신 노션 DB 페이지가 "웹에 게시(Share to web)" 되어 있어야 합니다.
 
 ## 1. 노션 DB 공개 게시 (한 번만)
 
