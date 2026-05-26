@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="mt-1 text-ink-700">{CONFIG.blog.description}</div>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6 text-xs leading-relaxed">
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-6 text-xs leading-relaxed">
           <div>
             <div className="mb-3 text-ink-900 font-medium text-[13px]">메뉴</div>
             <ul className="space-y-2">
@@ -64,7 +64,7 @@ export default function Footer() {
             </dl>
           </div>
 
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <div className="mb-3 text-ink-900 font-medium text-[13px]">
               등록 정보
             </div>
