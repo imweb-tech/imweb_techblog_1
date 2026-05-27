@@ -20,11 +20,12 @@
 |---|---|
 | Framework | **Next.js 14** (`output: "export"` 로 정적 export) |
 | 언어 | TypeScript + React 18 |
-| 스타일 | Tailwind CSS + 커스텀 CSS 토큰 (`globals.css`) |
+| 스타일 | Tailwind CSS + CSS 변수 토큰 (`globals.css`) |
+| 테마 | **라이트/다크 모드** (`darkMode: "class"` + CSS 변수, 토글 + OS 추종) |
 | 폰트 | Pretendard (한글) |
 | 데이터 | **notion-client** (비공식 Notion API) |
 | 본문 렌더 | **react-notion-x** + Prism (코드) + KaTeX (수식) |
-| 댓글 | **giscus** (GitHub Discussions) |
+| 댓글 | **giscus** (GitHub Discussions, 테마 연동) |
 | 호스팅 | GitHub Pages + GitHub Actions |
 
 ---
@@ -35,14 +36,18 @@
 imweb_techblog_1/
 ├── public/
 │   ├── banner.webp                  메인 상단 슬로건 배너
-│   ├── symbol.webp                  로고 (헤더, favicon)
-│   ├── og-default.png               OG 기본 이미지
+│   ├── Logo_ImwebTech_black.svg      헤더 로고 (라이트 모드)
+│   ├── Logo_ImwebTech_white.svg      헤더 로고 (다크 모드)
+│   ├── symbol.webp                  favicon (구름 심볼)
+│   ├── OG_imweb_tech.png            OG 기본 이미지
 │   ├── robots.txt
 │   ├── .nojekyll                    GitHub Pages 가 Jekyll 처리 건너뛰게
 │   └── post-images/                 노션 thumbnail 직접 호스팅 (attachment 우회)
 │
 ├── src/
 │   ├── components/
+│   │   ├── common/
+│   │   │   └── CoverImage.tsx       커버/썸네일 (미설정·404 시 placeholder fallback)
 │   │   ├── home/
 │   │   │   ├── Banner.tsx           메인 상단 고정 배너
 │   │   │   ├── Sidebar.tsx          카테고리/태그 필터 (lg+ sticky 좌측, < lg 토글)
@@ -50,14 +55,15 @@ imweb_techblog_1/
 │   │   │   ├── PostCard.tsx           ↳ 그리드 뷰의 카드
 │   │   │   └── PostListItem.tsx       ↳ 리스트 뷰의 행
 │   │   ├── layout/
-│   │   │   ├── Header.tsx           로고 + 네비 + 검색 input
-│   │   │   ├── Footer.tsx           메뉴 + 회사 정보 + 저작권
+│   │   │   ├── Header.tsx           로고(SVG) + 네비 + 검색 input + 테마 토글
+│   │   │   ├── ThemeToggle.tsx      라이트/다크 전환 버튼
+│   │   │   ├── Footer.tsx           메뉴 + 회사 정보 + 저작권 (좁은 화면 2열)
 │   │   │   └── Layout.tsx           페이지 wrapper
 │   │   └── post/
 │   │       ├── PostHeader.tsx       제목·메타·태그·커버
 │   │       ├── PostContent.tsx      <NotionRenderer /> 래핑
 │   │       ├── PostActions.tsx      공유 버튼
-│   │       └── Comments.tsx         giscus 임베드
+│   │       └── Comments.tsx         giscus 임베드 (테마 연동)
 │   │
 │   ├── lib/
 │   │   ├── notion/
@@ -66,11 +72,12 @@ imweb_techblog_1/
 │   │   │   ├── getPostBySlug.ts     단일 글 → TPost + recordMap
 │   │   │   ├── mapPage.ts           notion block → TPost 매핑 (속성 파싱)
 │   │   │   └── enrichUsers.ts       공개 페이지의 빈 notion_user 보강
-│   │   └── utils/
-│   │       ├── formatDate.ts        "2026-05-13" → "2026.05.13"
-│   │       ├── slugify.ts           제목 → URL slug
-│   │       ├── safeStatic.ts        getStaticProps try/catch + fallback 헬퍼
-│   │       └── withBasePath.ts      GitHub Pages basePath 자동 prefix
+│   │   ├── utils/
+│   │   │   ├── formatDate.ts        "2026-05-13" → "2026.05.13"
+│   │   │   ├── slugify.ts           제목 → URL slug
+│   │   │   ├── safeStatic.ts        getStaticProps try/catch + fallback 헬퍼
+│   │   │   └── withBasePath.ts      GitHub Pages basePath 자동 prefix
+│   │   └── useTheme.ts              라이트/다크 테마 훅 (토글·localStorage·OS 추종)
 │   │
 │   ├── pages/
 │   │   ├── _app.tsx                 전역 CSS, OG meta
@@ -82,7 +89,7 @@ imweb_techblog_1/
 │   │   ├── tags.tsx                 태그 목록
 │   │   └── posts/[slug].tsx         글 상세
 │   │
-│   ├── styles/globals.css           Tailwind base + .prose-body / .lift-card / .chip
+│   ├── styles/globals.css           Tailwind base + CSS 변수 팔레트(:root/.dark) + .notion 본문 스타일 + .chip 등
 │   └── types/index.ts               TPost / TAuthor / TPostStatus
 │
 ├── scripts/
@@ -235,20 +242,30 @@ flowchart TB
 
 ### 컬러 / 토큰 (`globals.css`)
 
-| 토큰 | 값 | 용도 |
-|---|---|---|
-| `--color-brand` | `#3182F6` | 포커스 / 강조 |
-| `--color-text` | `#191F28` | 본문 |
-| `--color-subtext` | `#4E5968` | 보조 |
-| `--color-surface` | `#F9FAFB` | 카드/칩 배경 |
-| `--color-border` | `#E5E8EB` | 구분선 |
-| `--ease-smooth` | `cubic-bezier(0.16, 1, 0.3, 1)` | hover/transition |
+색상은 모두 CSS 변수로, `:root`(라이트)와 `.dark`(다크) 두 블록에서 값만 전환합니다. Tailwind 의 `ink/surface/line/base/card` 색상이 이 변수를 참조하므로 컴포넌트는 그대로 두고 변수만 바꾸면 됩니다.
+
+| 토큰 | 라이트 | 다크 | 용도 |
+|---|---|---|---|
+| `--color-brand` | `#3182F6` | `#3182F6` | 포커스 / 강조 (공통) |
+| `--color-bg` | `#FFFFFF` | `#0F1115` | 페이지 배경 (`bg-base`) |
+| `--color-card` | `#FFFFFF` | `#181B20` | 카드/입력 표면 (`bg-card`) |
+| `--color-surface` | `#F9FAFB` | `#1F242B` | 칩/보조 배경 (`bg-surface`) |
+| `--color-text` | `#191F28` | `#E7EAEE` | 본문 (`text-ink-900`) |
+| `--color-subtext` | `#4E5968` | `#A7B0BC` | 보조 (`text-ink-700`) |
+| `--color-border` | `#E5E8EB` | `#2A2F37` | 구분선 (`border-line`) |
+| `--ease-smooth` | `cubic-bezier(0.16, 1, 0.3, 1)` | — | hover/transition |
+
+### 다크 모드
+
+- `tailwind.config.js` → `darkMode: "class"`. `<html class="dark">` 여부로 전환.
+- `_document.tsx` 의 인라인 스크립트가 페인트 전에 `localStorage.theme`(없으면 OS 설정)를 읽어 클래스를 주입 → **FOUC 방지**.
+- `ThemeToggle` + `useTheme()` 가 토글/저장/구독 담당. 헤더 로고(black/white SVG)와 giscus 테마가 모드에 따라 자동 전환.
 
 ### 재사용 클래스
 
 | 클래스 | 사용처 |
 |---|---|
-| `.prose-body` | 글 본문 (h1~h4, p, code, blockquote 등) |
+| `.notion` 하위 | 본문(react-notion-x) 블록 — 콜아웃/인용구/제목/코드 등을 톤앤매너로 재정의 (라이트/다크 대응) |
 | `.lift-card` | 카드 hover 시 그림자 + Y -4px |
 | `.chip` | 태그/카테고리 칩 (`.is-active` 로 활성) |
 | `.no-scrollbar` | 가로 스크롤 영역의 스크롤바 숨김 |
