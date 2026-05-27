@@ -2,6 +2,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState, useEffect, useRef, FormEvent } from "react"
 import { withBasePath } from "@/lib/utils/withBasePath"
+import ThemeToggle from "./ThemeToggle"
 
 const CONFIG = require("../../../site.config")
 
@@ -29,21 +30,29 @@ export default function Header() {
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-300 ease-smooth ${
         scrolled
-          ? "bg-white/80 backdrop-blur-md border-b border-line"
+          ? "bg-[var(--color-header-bg)] backdrop-blur-md border-b border-line"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 font-bold">
+        <Link
+          href="/"
+          className="flex items-center"
+          aria-label={CONFIG.blog.title}
+        >
+          {/* 라이트=검정, 다크=흰색 로고 자동 전환 */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={withBasePath("/symbol.webp")}
+            src={withBasePath("/Logo_ImwebTech_black.svg")}
             alt={CONFIG.blog.title}
-            className="h-7 w-auto"
+            className="h-7 w-auto dark:hidden"
           />
-          <span className="text-[1.05rem] tracking-tight">
-            {CONFIG.blog.title}
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={withBasePath("/Logo_ImwebTech_white.svg")}
+            alt={CONFIG.blog.title}
+            className="h-7 w-auto hidden dark:block"
+          />
         </Link>
 
         <div className="flex items-center gap-1 sm:gap-2">
@@ -100,9 +109,11 @@ export default function Header() {
               name="q"
               placeholder="검색"
               aria-label="검색"
-              className="h-9 w-40 lg:w-48 rounded-lg bg-surface pl-9 pr-3 text-sm text-ink-900 placeholder:text-ink-500 outline-none border border-transparent transition-colors hover:bg-surface focus:bg-white focus:border-line"
+              className="h-9 w-40 lg:w-48 rounded-lg bg-surface pl-9 pr-3 text-sm text-ink-900 placeholder:text-ink-500 outline-none border border-transparent transition-colors hover:bg-surface focus:bg-card focus:border-line"
             />
           </form>
+
+          <ThemeToggle />
         </div>
       </div>
     </header>

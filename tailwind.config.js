@@ -3,6 +3,7 @@ const CONFIG = require("./site.config")
 
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     container: {
       center: true,
@@ -21,18 +22,22 @@ module.exports = {
     },
     extend: {
       colors: {
+        // 브랜드는 라이트/다크 공통(가독성 OK)
         brand: {
           DEFAULT: CONFIG.brand.primary,
           dark: CONFIG.brand.primaryDark,
           accent: CONFIG.brand.accent,
         },
+        // 시맨틱 색상은 CSS 변수로 → globals.css 의 :root / .dark 에서 값 전환
         ink: {
-          900: CONFIG.brand.text,
-          700: CONFIG.brand.subtext,
-          500: CONFIG.brand.muted,
+          900: "var(--color-text)",
+          700: "var(--color-subtext)",
+          500: "var(--color-muted)",
         },
-        surface: CONFIG.brand.surface,
-        line: CONFIG.brand.border,
+        surface: "var(--color-surface)",
+        line: "var(--color-border)",
+        base: "var(--color-bg)", // 페이지 배경
+        card: "var(--color-card)", // 카드/입력 등 기존 흰색 표면
       },
       fontFamily: {
         sans: [

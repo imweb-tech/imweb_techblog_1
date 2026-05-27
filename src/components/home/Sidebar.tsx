@@ -109,7 +109,7 @@ function NarrowFilters({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between rounded-lg border border-line bg-white px-4 py-3 text-sm font-medium text-ink-900 hover:bg-surface transition-colors"
+        className="flex w-full items-center justify-between rounded-lg border border-line bg-card px-4 py-3 text-sm font-medium text-ink-900 hover:bg-surface transition-colors"
       >
         <span className="inline-flex items-center gap-2">
           <svg
@@ -151,7 +151,7 @@ function NarrowFilters({
       </button>
 
       {open && (
-        <div className="mt-3 grid grid-cols-2 gap-4 rounded-lg border border-line bg-white p-4">
+        <div className="mt-3 grid grid-cols-2 gap-4 rounded-lg border border-line bg-card p-4">
           {categories.length > 0 && (
             <section>
               <SectionLabel>카테고리</SectionLabel>
@@ -223,7 +223,7 @@ function CategoryRow({
       onClick={onClick}
       className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${
         active
-          ? "bg-ink-900 text-white font-medium"
+          ? "bg-ink-900 text-base font-medium"
           : "text-ink-700 hover:bg-surface hover:text-ink-900"
       }`}
     >

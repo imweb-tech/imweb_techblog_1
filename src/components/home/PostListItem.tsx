@@ -10,7 +10,7 @@ export default function PostListItem({ post }: { post: TPost }) {
   return (
     <Link
       href={href}
-      className="lift-card group flex items-stretch overflow-hidden rounded-card bg-white shadow-card hover:shadow-card-hover"
+      className="lift-card group flex items-stretch overflow-hidden rounded-card bg-card shadow-card hover:shadow-card-hover"
     >
       <div className="relative w-28 sm:w-40 shrink-0 self-stretch bg-surface">
         <CoverImage
@@ -18,7 +18,7 @@ export default function PostListItem({ post }: { post: TPost }) {
           alt={post.title}
           title={post.title}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-[1.04]"
-          placeholderClassName="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#EAF2FF] to-[#DDE8FF]"
+          placeholderClassName="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#EAF2FF] to-[#DDE8FF] dark:from-[#1b2330] dark:to-[#161d27]"
           initialsClassName="text-xl font-bold text-brand/60 tracking-tight"
         />
       </div>

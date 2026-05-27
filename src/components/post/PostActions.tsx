@@ -38,7 +38,7 @@ export default function PostActions({ post }: { post: TPost }) {
         type="button"
         onClick={onShare}
         aria-label="공유하기"
-        className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium border bg-white border-line text-ink-700 hover:border-ink-500 hover:text-ink-900 transition-colors"
+        className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium border bg-card border-line text-ink-700 hover:border-ink-500 hover:text-ink-900 transition-colors"
       >
         <svg
           width="18"

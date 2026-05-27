@@ -36,9 +36,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ko_KR" />
         <meta property="og:site_name" content={CONFIG.blog.title} />
-        <meta property="og:image" content={`${CONFIG.blog.siteUrl}/og-default.png`} />
+        <meta property="og:image" content={`${CONFIG.blog.siteUrl}/OG_imweb_tech.png`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={`${CONFIG.blog.siteUrl}/og-default.png`} />
+        <meta name="twitter:image" content={`${CONFIG.blog.siteUrl}/OG_imweb_tech.png`} />
       </Head>
       <Component {...pageProps} />
     </>

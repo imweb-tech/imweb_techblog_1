@@ -63,7 +63,7 @@ function ViewToggle({
   const itemClass = (active: boolean) =>
     `inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors ${
       active
-        ? "bg-white text-ink-900 shadow-sm"
+        ? "bg-card text-ink-900 shadow-sm"
         : "text-ink-500 hover:text-ink-900"
     }`
 

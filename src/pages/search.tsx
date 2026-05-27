@@ -57,7 +57,7 @@ export default function SearchPage({
             onChange={(e) => setQ(e.target.value)}
             placeholder="검색어를 입력하세요"
             autoFocus
-            className="w-full rounded-xl border border-line bg-white px-5 py-4 pr-12 text-base text-ink-900 placeholder:text-ink-500 outline-none transition-colors focus:border-brand"
+            className="w-full rounded-xl border border-line bg-card px-5 py-4 pr-12 text-base text-ink-900 placeholder:text-ink-500 outline-none transition-colors focus:border-brand"
           />
           <svg
             className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-500"
