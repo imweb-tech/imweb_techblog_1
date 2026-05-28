@@ -39,6 +39,7 @@ imweb_techblog_1/
 │   ├── Logo_ImwebTech_black.svg      헤더 로고 (라이트 모드)
 │   ├── Logo_ImwebTech_white.svg      헤더 로고 (다크 모드)
 │   ├── symbol.webp                  favicon (구름 심볼)
+│   ├── symbol_white.png             흰색 심볼 (채용 CTA 구분자)
 │   ├── OG_imweb_tech.png            OG 기본 이미지
 │   ├── robots.txt
 │   ├── .nojekyll                    GitHub Pages 가 Jekyll 처리 건너뛰게
@@ -57,6 +58,7 @@ imweb_techblog_1/
 │   │   ├── layout/
 │   │   │   ├── Header.tsx           로고(SVG) + 네비 + 검색 + 테마 토글 (<sm 은 햄버거+검색바)
 │   │   │   ├── ThemeToggle.tsx      라이트/다크 전환 버튼
+│   │   │   ├── RecruitRibbon.tsx    채용 CTA 하단 고정 LED 마퀴 (recruitCTA 토글)
 │   │   │   ├── Footer.tsx           메뉴 + 회사 정보 + 저작권 (좁은 화면 2열)
 │   │   │   └── Layout.tsx           페이지 wrapper
 │   │   └── post/
@@ -284,7 +286,7 @@ flowchart TB
 
 | 파일 | 책임 |
 |---|---|
-| **`site.config.js`** | 블로그명, 설명, 네비, 회사 정보, 노션 DB ID, giscus 설정 |
+| **`site.config.js`** | 블로그명, 설명, 네비, 회사 정보, 노션 DB ID, giscus 설정, 채용 CTA(recruitCTA) |
 | `next.config.js` | basePath (GitHub Pages), 정적 export, image unoptimized |
 | `tailwind.config.js` | 컬러/타이포/이징 토큰 → Tailwind 유틸로 노출 |
 | `.github/workflows/deploy.yml` | 빌드 + Pages 배포 (push / cron / 수동) |

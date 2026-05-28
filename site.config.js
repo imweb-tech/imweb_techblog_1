@@ -75,6 +75,14 @@ const CONFIG = {
       inputPosition: "bottom",
     },
   },
+
+  // ── 채용 이벤트 CTA (상단 리본) ──────────────────────────────────────────
+  // 이벤트 기간에만 enabled: true. label/href 만 바꿔 운영합니다.
+  recruitCTA: {
+    enabled: true, // 이벤트 끝나면 false
+    label: "아임웹은 지금 채용 중! 보상금 100만 원",
+    href: "https://career.imweb.me",
+  },
 }
 
 module.exports = CONFIG
