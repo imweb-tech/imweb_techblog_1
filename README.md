@@ -84,7 +84,7 @@ npm run lint       # next lint
 - 채용 CTA(recruitCTA) — 노출 여부/문구/링크
 - 이벤트 팝업(eventPopup) — 노출 여부/타이틀·설명·일시·장소·신청 링크
 
-Tailwind 토큰은 [`tailwind.config.js`](./tailwind.config.js) 에, 본문(`prose-body`)/카드(`lift-card`)/칩(`chip`) 스타일은 [`src/styles/globals.css`](./src/styles/globals.css) 에서 조정합니다.
+Tailwind 토큰은 [`tailwind.config.js`](./tailwind.config.js) 에, 본문(`.notion` 하위)/카드(`.lift-card`)/칩(`.chip`)/CTA 마퀴(`.cta-led`·`.cta-marquee-track`)/이벤트 팝업(`.event-popup-card`) 스타일은 [`src/styles/globals.css`](./src/styles/globals.css) 에서 조정합니다.
 
 라이트/다크 색상은 모두 `globals.css` 의 CSS 변수로 관리합니다 — `:root`(라이트)와 `.dark`(다크) 블록의 `--color-*` 값만 바꾸면 전체 팔레트가 전환됩니다. 헤더 로고는 [`public/Logo_ImwebTech_black.svg`](./public/) / [`Logo_ImwebTech_white.svg`](./public/), OG 기본 이미지는 [`public/OG_imweb_tech.png`](./public/) 를 사용합니다.
 

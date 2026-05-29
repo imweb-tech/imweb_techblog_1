@@ -172,17 +172,20 @@ flowchart LR
 
 ```
 Layout
-├── Header                  로고 / 네비 / 검색 input
+├── Header                  로고(SVG) / 네비(또는 햄버거+검색바, <sm) / 검색 / 테마 토글
+├── EventPopup              메인 전용 이벤트 홍보 모달 (eventPopup 활성 시)
 ├── HomePage
 │   ├── Banner              상단 슬로건 이미지
 │   ├── Sidebar             카테고리 / 태그 필터
 │   │   ├── DesktopFilters  (lg+) sticky 좌측 vertical 리스트
 │   │   └── NarrowFilters   (< lg) 토글 + 2컬럼 칩
-│   └── PostGrid            글 목록
+│   └── PostGrid            글 목록 + 페이지네이션
 │       ├── ViewToggle      그리드/리스트 토글 버튼
 │       ├── PostCard*       (grid 모드)
-│       └── PostListItem*   (list 모드, 기본)
-└── Footer
+│       ├── PostListItem*   (list 모드, 기본; <sm 은 썸네일 숨김)
+│       └── Pagination      ‹ 1 2 3 … › (글 수 > 9 일 때)
+├── Footer
+└── RecruitRibbon           하단 고정 LED 마퀴 (recruitCTA 활성 시, 모든 페이지)
 ```
 
 ### 글 상세 (`/posts/<slug>/`)
@@ -193,8 +196,9 @@ Layout
 ├── PostHeader              카테고리 라벨 / 제목 / 요약 / 작성자·날짜 / 태그 칩 / 커버
 ├── PostContent             <NotionRenderer /> + dynamic Code/Collection/Equation/Modal
 ├── PostActions             공유 버튼 (Web Share API + clipboard fallback)
-├── Comments                giscus (활성 시)
-└── Footer
+├── Comments                giscus (활성 시, 테마 연동)
+├── Footer
+└── RecruitRibbon           하단 고정 LED 마퀴 (recruitCTA 활성 시)
 ```
 
 ---
@@ -271,6 +275,8 @@ flowchart TB
 | `.notion` 하위 | 본문(react-notion-x) 블록 — 콜아웃/인용구/제목/코드 등을 톤앤매너로 재정의 (라이트/다크 대응) |
 | `.lift-card` | 카드 hover 시 그림자 + Y -4px |
 | `.chip` | 태그/카테고리 칩 (`.is-active` 로 활성) |
+| `.cta-marquee-track` / `.cta-led` / `.cta-led-logo` | 채용 CTA LED 전광판 — 좌→우 흐름 + 파란 네온 글로우 (`prefers-reduced-motion` 시 정지) |
+| `.event-popup-card` | 메인 이벤트 팝업 등장 애니메이션 (페이드 + 스케일, reduced-motion 시 정지) |
 | `.no-scrollbar` | 가로 스크롤 영역의 스크롤바 숨김 |
 
 ### 반응형 브레이크포인트
