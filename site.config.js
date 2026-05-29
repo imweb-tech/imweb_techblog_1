@@ -83,6 +83,21 @@ const CONFIG = {
     label: "아임웹은 지금 채용 중! 보상금 100만 원",
     href: "https://career.imweb.me",
   },
+
+  // ── 메인 페이지 이벤트 팝업 ─────────────────────────────────────────────
+  // 개발자 행사 등 홍보용. enabled: false 면 안 뜸. 메인(/)에서만 노출.
+  // 사용자가 "오늘 하루 보지 않기" 누르면 24시간 동안 안 보임(localStorage).
+  eventPopup: {
+    enabled: true,
+    badge: "DEV EVENT",
+    title: "아임웹 테크 데이 2026",
+    description:
+      "아임웹의 첫번째 외부 행사에 초대합니다.\n키노트부터 기술 세션, 네트워킹까지 많은 기대 부탁드립니다.",
+    date: "2026.07.15 (수) · 14:00",
+    place: "서울 강남 VPLEX 9F",
+    ctaLabel: "지금 신청하기",
+    ctaHref: "https://career.imweb.me",
+  },
 }
 
 module.exports = CONFIG

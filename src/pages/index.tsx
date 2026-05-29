@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout"
 import Banner from "@/components/home/Banner"
 import PostGrid from "@/components/home/PostGrid"
 import Sidebar from "@/components/home/Sidebar"
+import EventPopup from "@/components/home/EventPopup"
 import {
   getPosts,
   getCategories,
@@ -58,6 +59,7 @@ export default function HomePage({
 
   return (
     <Layout>
+      <EventPopup />
       <div className="container mx-auto pt-8 pb-24">
         <Banner />
         <div

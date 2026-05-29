@@ -54,7 +54,8 @@ imweb_techblog_1/
 │   │   │   ├── Sidebar.tsx          카테고리/태그 필터 (lg+ sticky 좌측, < lg 토글)
 │   │   │   ├── PostGrid.tsx         글 목록 + 그리드/리스트 뷰 토글 + 페이지네이션(9개/페이지)
 │   │   │   ├── PostCard.tsx           ↳ 그리드 뷰의 카드 (썸네일 16:10)
-│   │   │   └── PostListItem.tsx       ↳ 리스트 뷰의 행 (썸네일 16:10, 카드에 flush)
+│   │   │   ├── PostListItem.tsx       ↳ 리스트 뷰의 행 (썸네일 16:10, 카드에 flush)
+│   │   │   └── EventPopup.tsx       메인 페이지 이벤트 홍보 팝업 (eventPopup 토글)
 │   │   ├── layout/
 │   │   │   ├── Header.tsx           로고(SVG) + 네비 + 검색 + 테마 토글 (<sm 은 햄버거+검색바)
 │   │   │   ├── ThemeToggle.tsx      라이트/다크 전환 버튼
@@ -286,7 +287,7 @@ flowchart TB
 
 | 파일 | 책임 |
 |---|---|
-| **`site.config.js`** | 블로그명, 설명, 네비, 회사 정보, 노션 DB ID, giscus 설정, 채용 CTA(recruitCTA) |
+| **`site.config.js`** | 블로그명, 설명, 네비, 회사 정보, 노션 DB ID, giscus 설정, 채용 CTA(recruitCTA), 이벤트 팝업(eventPopup) |
 | `next.config.js` | basePath (GitHub Pages), 정적 export, image unoptimized |
 | `tailwind.config.js` | 컬러/타이포/이징 토큰 → Tailwind 유틸로 노출 |
 | `.github/workflows/deploy.yml` | 빌드 + Pages 배포 (push / cron / 수동) |

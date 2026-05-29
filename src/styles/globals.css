@@ -296,6 +296,26 @@ a {
   }
 }
 
+/* ── 이벤트 팝업 — 부드러운 등장 ───────────────────────────────────────── */
+@keyframes event-popup-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.event-popup-card {
+  animation: event-popup-in 0.25s var(--ease-smooth);
+}
+@media (prefers-reduced-motion: reduce) {
+  .event-popup-card {
+    animation: none;
+  }
+}
+
 /* ── 스크롤바 ────────────────────────────────────────────────────────────── */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
